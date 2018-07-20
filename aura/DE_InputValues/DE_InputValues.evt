@@ -1,0 +1,6 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="input_name" type="String" />
+    <aura:attribute name="input_city" type="String" />
+    <aura:attribute name="input_speciality" type="String" />
+    <aura:attribute name="cont_id" type="String" />
+</aura:event>

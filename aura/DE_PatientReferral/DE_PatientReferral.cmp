@@ -1,0 +1,59 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<ltng:require styles="/resource/SLDS0001/assets/styles/salesforce-lightning-design-system-ltng.css"
+                  scripts="/resource/jquerymin2"
+                  afterScriptsLoaded="{!c.loadFunc}">	
+    </ltng:require>
+    <aura:attribute name="phy_name" type="String"/>
+    <aura:attribute name="phy_city" type="String"/>
+    <aura:attribute name="phy_select" type="string"/>
+    <aura:attribute name="recordId" type="Id" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <div class="slds">
+        
+        <div class="slds-modal slds-modal--large" aria-hidden="false" role="dialog" id="modal">
+            <div class="slds-modal__container">
+                
+                <div id="head" class="slds-modal__header">
+                    <button id="xcls" class="slds-button slds-button--icon-inverse slds-modal__close" onclick="{!c.closeModal}">
+                        X
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <div class="slds-page-header" role="banner">
+                        <div class="slds-grid">
+                            <div id="div1" class="slds-col slds-has-flexi-truncate">
+                                
+                                <h2 id="head" class="slds-text-heading--medium">Find a Physician</h2>
+                                <div id="filter">
+                                <ui:inputText aura:id="name" class="slds-input" placeholder="Search a Physician by Name"/>
+                                <ui:inputText aura:id="city" class="slds-input" placeholder="City"/>
+                                <ui:inputSelect class="slds-select" aura:id="InputSelectDynamic" change="{!c.onSelectChange}"/>
+                                <div id="butt">    
+                                    <button class="slds-button slds-button--neutral" onclick="{!c.fetchValues}">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="slds-modal__content slds-p-around--medium">
+                    <div>
+                        <c:DE_DisplayDoctors />  
+                        
+                    </div>
+                </div>
+                <div id="cancel" class="slds-modal__footer">
+                    <button class="slds-button slds-button--neutral" onclick="{!c.closeModal}">Cancel</button>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop" id="backdrop"></div>
+        
+        <!-- Button To Open Modal -->
+        <button class="slds-button slds-button--brand" id="toggleBtn">Referrals</button>
+    </div>
+    
+</aura:component>

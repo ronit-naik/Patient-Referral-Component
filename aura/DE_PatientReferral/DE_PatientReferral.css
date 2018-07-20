@@ -1,0 +1,49 @@
+.THIS h2#head
+{
+    float : left !important;
+}
+.THIS .slds-input
+{
+    max-width : 234px;
+    margin-left: 30px;
+    font-size: 16px;
+}
+.THIS .slds-select
+{
+    max-width:234px;
+    margin-left:30px;
+    font-size: 16px;
+}
+.THIS #div1
+{
+    display:inherit;
+}
+.THIS div#filter 
+{
+    display: flex;
+    width: 880px;
+    margin-left: 100px;
+}
+.THIS div#butt {
+    margin-left: 30px;
+}
+.THIS div#head
+{
+    border-bottom: white !important;
+}
+.THIS div#cancel
+{
+    padding-right: 83px !important;
+}
+.THIS button#xcls
+{
+    font-size: 20px !important;
+}
+.THIS button#toggleBtn
+{
+    float:right !important;
+}
+.THIS .slds-modal--large .slds-modal__container
+{
+    max-width: 90% !important;
+}

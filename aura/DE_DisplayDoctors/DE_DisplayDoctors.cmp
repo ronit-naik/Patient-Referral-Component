@@ -1,0 +1,70 @@
+<aura:component controller="DE_FetchRecords" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+	<ltng:require styles="/resource/SLDS0001/assets/styles/salesforce-lightning-design-system-ltng.css"/>
+    
+    <aura:attribute name="conId" type="Id" />
+    <aura:attribute name="result" type="List"/>
+    <aura:attribute name="selected" type="List"/>
+    <aura:attribute name="selected_multi" type="List"/>
+    
+    <aura:handler event="c:DE_InputValues" action="{!c.handleSelect}" />
+    
+    
+    <div class="slds">
+        <div id="tab1" >
+        <table id="table1" class="slds-table slds-table--bordered slds-table--striped">
+            <thead>
+                <tr class="slds-text-heading--small">
+                    <th scope="col"><span class="slds-truncate"></span></th>
+                    <th scope="col"><span class="slds-truncate">Name</span></th>
+                    <th scope="col"><span class="slds-truncate">Speciality</span></th>
+                    <th scope="col"><span class="slds-truncate">Address</span></th>
+                    <th scope="col"><span class="slds-truncate">City</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.result}" var="res">
+                    <tr>
+                        <td><span class=""  data-record="{!res.Id}"><ui:inputCheckbox aura:id="cb" value="{!res.flag}"/></span></td>
+                        <td><a data-record="{!res.u.Id}" id="{!res.u.Id}" onclick="{!c.navigate}" >{!res.u.Name}</a></td>         
+                        <td>{!res.u.Speciality__c}</td>
+                        <td>{!res.u.Street}</td>
+                        <td>{!res.u.City}</td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        
+        <div id="addButt">
+            <button id="butt" class="slds-button slds-button--brand" onclick="{!c.checkedValue}">Add to Referrals</button>
+        </div>
+        </div>
+        <div id="tab2" style="display:none">
+        <table id="table2" class="slds-table slds-table--bordered slds-table--striped">
+            <thead>
+                <tr class="slds-text-heading--small">
+                    <th scope="col"><span class="slds-truncate">Name</span></th>
+                    <th scope="col"><span class="slds-truncate">Speciality</span></th>
+                    <th scope="col"><span class="slds-truncate">Address</span></th>
+                    <th scope="col"><span class="slds-truncate">City</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.selected}" var="res">
+                    <tr>
+                        <td><a href="{!'/'+res.u.Id}">{!res.u.Name}</a></td>         
+                        <td>{!res.u.Speciality__c}</td>
+                        <td>{!res.u.Street}</td>
+                        <td>{!res.u.City}</td>
+                        <td><button id="{!res.u.Id}" class="slds-button slds-button--destructive" onclick="{!c.deleteReferral}">Delete</button></td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <div id="saveButt">
+            <button id="butt2" class="slds-button slds-button--brand" onclick="{!c.saveReferral}">Save Referrals</button>
+            <button id="butt3" class="slds-button slds-button--destructive" onclick="{!c.clearReferral}">Clear Referrals</button>
+        </div>
+        </div>
+    </div>
+</aura:component>
